@@ -8,32 +8,32 @@ Standard:
 ```yml
 steps:
 - name: Setup Debug Session
+  uses: danshui-git/debugger-action@main
   env:
     TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
     TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-  uses: danshui-git/debugger-action@main
 ```
 
 Attach to docker container:
 ```yml
 steps:
 - name: Setup Debug Session
+  uses: danshui-git/debugger-action@main
   env:
     TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
     TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-  uses: danshui-git/debugger-action@main
 ```
 
 Attach to docker image:
 ```yml
 steps:
 - name: Setup Debug Session
+  uses: danshui-git/debugger-action@main
   env:
     TMATE_DOCKER_IMAGE: IMAGE_TAG
     TMATE_DOCKER_IMAGE_EXP: IMAGE_TAG
     TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
     TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-  uses: danshui-git/debugger-action@main
 ```
 
 
