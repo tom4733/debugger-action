@@ -55,8 +55,8 @@ You can make the debugger attach to specified docker image/container by setting 
 
 - `TIMEOUT_MIN`: timeout in minutes
 - `DISP_INTERVAL_SEC`: message display interval in seconds
-- `TELEGRAM_TOKEN`: 
-- `TELEGRAM_TO`: 
+- `TELEGRAM_BOT_TOKEN`: 
+- `TELEGRAM_CHAT_ID`: 
 - `TMATE_DOCKER_CONTAINER`: the docker container name
 - `TMATE_DOCKER_IMAGE`: the docker image tag
 - `TMATE_DOCKER_IMAGE_EXP`: the docker image tag for saving changes you made in debugger. (defaults to `TMATE_DOCKER_IMAGE`)
