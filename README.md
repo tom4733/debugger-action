@@ -9,9 +9,9 @@ Standard:
 steps:
 - name: Setup Debug Session
   env:
-    TELEGRAM_TOKEN : ${{ secrets.TELEGRAM_TOKEN }}
-    TELEGRAM_TO : ${{ secrets.TELEGRAM_TO }}
-  uses: garypang13/debugger-action@master
+    TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  uses: danshui-git/debugger-action@main
 ```
 
 Attach to docker container:
@@ -19,9 +19,9 @@ Attach to docker container:
 steps:
 - name: Setup Debug Session
   env:
-    TELEGRAM_TOKEN : ${{ secrets.TELEGRAM_TOKEN }}
-    TELEGRAM_TO : ${{ secrets.TELEGRAM_TO }}
-  uses: garypang13/debugger-action@master
+    TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  uses: danshui-git/debugger-action@main
 ```
 
 Attach to docker image:
@@ -31,9 +31,9 @@ steps:
   env:
     TMATE_DOCKER_IMAGE: IMAGE_TAG
     TMATE_DOCKER_IMAGE_EXP: IMAGE_TAG
-    TELEGRAM_TOKEN : ${{ secrets.TELEGRAM_TOKEN }}
-    TELEGRAM_TO : ${{ secrets.TELEGRAM_TO }}
-  uses: garypang13/debugger-action@master
+    TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  uses: danshui-git/debugger-action@main
 ```
 
 
