@@ -133,7 +133,7 @@ if [[ -n "$TELEGRAM_BOT_TOKEN" ]]; then
   echo ""
 elif [[ -n "$PUSH_PLUS_TOKEN" ]]; then
   MSG="${SSH_LINE}\nWEB: ${WEB_LINE}"
-  curl -k --data token=${PUSH_PLUS_TOKEN} --data title="SSH_Message" --data "content=${SSH_LINE}" "http://www.pushplus.plus/send"
+  curl -k --data token=${PUSH_PLUS_TOKEN} --data title=SSH_Message --data content=${SSH_LINE} http://www.pushplus.plus/send
   echo ""
 fi
 
