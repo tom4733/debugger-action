@@ -119,7 +119,6 @@ WEB_LINE="$(tmate -S "${TMATE_SOCK}" display -p '#{tmate_web}')"
 
   MSG="SSH: ${SSH_LINE}\nWEB: ${WEB_LINE}"
   echo -e "\e[32m  \e[0m"
-  echo -e " SSH:\e[32m ${SSH_LIN} \e[0m"
   echo -e " SSH:\e[32m ${SSH_LINE} \e[0m"
   echo -e " Web:\e[33m ${WEB_LINE} \e[0m"
   echo -e "\e[32m  \e[0m"
