@@ -126,17 +126,15 @@ WEB_LINE="$(tmate -S "${TMATE_SOCK}" display -p '#{tmate_web}')"
 TIMEOUT_MESSAGE="如果您未连接SSH，则在${timeout}秒内自动跳过，要立即跳过此步骤，只需连接SSH并退出即可"
 echo -e "$TIMEOUT_MESSAGE"
 
-if [[ -n "$TELEGRAM_BOT_TOKEN" ]]; then
+if [[ -n "$TELEGRAM_BOT_TOKEN" ]] && [[ -n "$TELEGRAM_CHAT_ID" ]] && [[ "$INFORMATION_NOTICE" == "TG" ]]; then
   echo -n "Sending information to Telegram Bot......"
-  curl -k --data chat_id="${TELEGRAM_CHAT_ID}" --data "text=SSH ${SSH_LINE}
+  curl -k --data chat_id="${TELEGRAM_CHAT_ID}" --data "text=Web: ${WEB_LINE}
   
-  Web：${WEB_LINE}" "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage"
-  echo ""
-elif [[ -n "$PUSH_PLUS_TOKEN" ]]; then
-  curl -k --data token=${PUSH_PLUS_TOKEN} --data title="SSH连接代码" --data "content=SSH：${SSH_LINE}
+  SSH: ${SSH_LINE}" "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage"
+elif [[ -n "$PUSH_PLUS_TOKEN" ]] && [[ "$INFORMATION_NOTICE" == "PUSH" ]]; then
+  curl -k --data token=${PUSH_PLUS_TOKEN} --data title="SSH连接代码" --data "content=Web: ${WEB_LINE}
   
-  Web：${WEB_LINE}" "http://www.pushplus.plus/send"
-  echo ""
+  SSH: ${SSH_LINE}" "http://www.pushplus.plus/send"
 fi
 
 echo ______________________________________________________________________________________________
@@ -171,8 +169,8 @@ while [ -S "${TMATE_SOCK}" ]; do
     echo "您可以使用SSH终端连接，或者使用网页直接连接"
       echo "终端连接IP为SSH:后面的代码，网页连接直接点击Web后面的链接，然后以[ctrl+c]开始和[ctrl+d]结束"
       echo -e "\e[32m  \e[0m"
-      echo -e " SSH：\e[32m ${SSH_LINE} \e[0m"
-      echo -e " Web：\e[33m ${WEB_LINE} \e[0m"
+      echo -e " SSH: \e[32m ${SSH_LINE} \e[0m"
+      echo -e " Web: \e[33m ${WEB_LINE} \e[0m"
       echo -e "\e[32m  \e[0m"
       
     [ "x${user_connected}" != "x1" ] && (
