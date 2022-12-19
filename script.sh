@@ -131,6 +131,10 @@ if [[ -n "$TELEGRAM_BOT_TOKEN" ]]; then
   
   web ${WEB_LINE}" "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage"
   echo ""
+elif [[ -n "$PUSH_PLUS_TOKEN" ]]; then
+  MSG="${SSH_LINE}\nWEB: ${WEB_LINE}"
+  curl -k --data token="${PUSH_PLUS_TOKEN}" --data title="SSH_Message" --data "content=${MSG}" "http://www.pushplus.plus/send"
+  echo ""
 fi
 
 echo ______________________________________________________________________________________________
