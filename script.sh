@@ -150,12 +150,12 @@ while [ -S "${TMATE_SOCK}" ]; do
   connected=0
   grep -qE '^[[:digit:]\.]+ A mate has joined' "${TMATE_SERVER_LOG}" && connected=1
   if [ ${connected} -eq 1 ] && [ ${user_connected} -eq 0 ]; then
-    echo "You just connected! Timeout is now disabled."
+    echo "你刚刚连接超时,现在已禁用"
     user_connected=1
   fi
   if [ ${user_connected} -ne 1 ]; then
     if (( timecounter > timeout )); then
-      echo "Waiting on tmate connection timed out! This step is skipped now."
+      echo "等待连接超时,现在跳过SSH此步骤"
       cleanup
 
       if [ "x$TIMEOUT_FAIL" = "x1" ] || [ "x$TIMEOUT_FAIL" = "xtrue" ]; then
@@ -167,10 +167,10 @@ while [ -S "${TMATE_SOCK}" ]; do
   fi
 
   if (( timecounter % display_int == 0 )); then
-    echo "You can connect to this session in a terminal or browser"
-      echo "The following are encrypted debugger connection info"
-      echo -e "    SSH:\e[32m ${SSH_LINE} \e[0m"
-      echo -e "    Web:\e[32m ${WEB_LINE} \e[0m"
+    echo "您可以使用SSH终端连接，或者使用网页直接连接"
+      echo "终端连接IP为SSH:后面的代码，网页连接直接点击Web后面的链接"
+      echo -e " SSH:\e[32m ${SSH_LINE} \e[0m"
+      echo -e " Web:\e[33m ${WEB_LINE} \e[0m"
 	  
     [ "x${user_connected}" != "x1" ] && (
       echo -e "\n如果您还不连接SSH \e[31m将在\e[0m $(( timeout-timecounter )) 秒内自动跳过"
