@@ -168,7 +168,7 @@ while [ -S "${TMATE_SOCK}" ]; do
 
   if (( timecounter % display_int == 0 )); then
     echo "您可以使用SSH终端连接，或者使用网页直接连接"
-      echo "终端连接IP为SSH:后面的代码，网页连接直接点击Web后面的链接，然后于[ctrl+c]开始和[ctrl+d]结束"
+      echo "终端连接IP为SSH:后面的代码，网页连接直接点击Web后面的链接，然后以[ctrl+c]开始和[ctrl+d]结束"
       echo -e "\e[32m  \e[0m"
       echo -e " SSH:\e[32m ${SSH_LINE} \e[0m"
       echo -e " Web:\e[33m ${WEB_LINE} \e[0m"
