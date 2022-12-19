@@ -119,21 +119,19 @@ WEB_LINE="$(tmate -S "${TMATE_SOCK}" display -p '#{tmate_web}')"
 
   MSG="SSH: ${SSH_LINE}\nWEB: ${WEB_LINE}"
 
-  echo -e "    SSH:\e[32m ${SSH_LINE} \e[0m"
-  echo -e "    Web:\e[32m ${WEB_LINE} \e[0m"
+  echo -e " SSH:\e[32m ${SSH_LINE} \e[0m"
+  echo -e " Web:\e[33m ${WEB_LINE} \e[0m"
 
 TIMEOUT_MESSAGE="如果您未连接SSH，则在${timeout}秒内自动跳过，要立即跳过此步骤，只需连接SSH并用(ctrl+d)退出"
 echo -e "$TIMEOUT_MESSAGE"
 
 if [[ -n "$TELEGRAM_BOT_TOKEN" ]]; then
-  MSG="SSH: ${SSH_LINE}\nWEB: ${WEB_LINE}"
   echo -n "Sending information to Telegram Bot......"
   curl -k --data chat_id="${TELEGRAM_CHAT_ID}" --data "text=${SSH_LINE}
   
   web ${WEB_LINE}" "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage"
   echo ""
 elif [[ -n "$PUSH_PLUS_TOKEN" ]]; then
-  MSG="${SSH_LINE}\nWEB: ${WEB_LINE}"
   curl -k --data token=${PUSH_PLUS_TOKEN} --data title=SSH_Message --data "content=SSH:${SSH_LINE}
   
   Web:${WEB_LINE}" "http://www.pushplus.plus/send"
