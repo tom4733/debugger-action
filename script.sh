@@ -113,7 +113,8 @@ if [ ! -f "${TMATE_SERVER_LOG}" ]; then
   exit 1
 fi
 
-SSH_LINE="$(tmate -S "${TMATE_SOCK}" display -p '#{tmate_ssh}')"
+SSH_LIN="$(tmate -S "${TMATE_SOCK}" display -p '#{tmate_ssh}')"
+SSH_LINE="$(echo "${SSH_LIN}" |awk '{print $(2)}')"
 WEB_LINE="$(tmate -S "${TMATE_SOCK}" display -p '#{tmate_web}')"
 
   MSG="SSH: ${SSH_LINE}\nWEB: ${WEB_LINE}"
@@ -133,7 +134,9 @@ if [[ -n "$TELEGRAM_BOT_TOKEN" ]]; then
   echo ""
 elif [[ -n "$PUSH_PLUS_TOKEN" ]]; then
   MSG="${SSH_LINE}\nWEB: ${WEB_LINE}"
-  curl -k --data token=${PUSH_PLUS_TOKEN} --data title=SSH_Message --data "content=${SSH_LINE} ${WEB_LINE}" "http://www.pushplus.plus/send"
+  curl -k --data token=${PUSH_PLUS_TOKEN} --data title=SSH_Message --data "content=SSH:${SSH_LINE}
+  
+  Web:${WEB_LINE}" "http://www.pushplus.plus/send"
   echo ""
 fi
 
@@ -172,8 +175,8 @@ while [ -S "${TMATE_SOCK}" ]; do
       echo -e "    Web:\e[32m ${WEB_LINE} \e[0m"
 	  
     [ "x${user_connected}" != "x1" ] && (
-      echo -e "\nIf you don't connect to this session, it will be \e[31mSKIPPED\e[0m in $(( timeout-timecounter )) seconds at ${kill_date}"
-      echo "To skip this step now, simply connect the ssh and exit."
+      echo -e "\n如果您还不连接SSH \e[31m将在\e[0m in $(( timeout-timecounter )) 秒内自动跳过"
+      echo "要立即跳过此步骤，只需连接SSH并用(ctrl+d)退出"
     )
     echo ______________________________________________________________________________________________
   fi
