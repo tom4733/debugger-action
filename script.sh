@@ -175,7 +175,7 @@ while [ -S "${TMATE_SOCK}" ]; do
       echo -e "    Web:\e[32m ${WEB_LINE} \e[0m"
 	  
     [ "x${user_connected}" != "x1" ] && (
-      echo -e "\n如果您还不连接SSH \e[31m将在\e[0m in $(( timeout-timecounter )) 秒内自动跳过"
+      echo -e "\n如果您还不连接SSH \e[31m将在\e[0m $(( timeout-timecounter )) 秒内自动跳过"
       echo "要立即跳过此步骤，只需连接SSH并用(ctrl+d)退出"
     )
     echo ______________________________________________________________________________________________
