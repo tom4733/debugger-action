@@ -121,7 +121,7 @@ WEB_LINE="$(tmate -S "${TMATE_SOCK}" display -p '#{tmate_web}')"
   echo -e "    SSH:\e[32m ${SSH_LINE} \e[0m"
   echo -e "    Web:\e[32m ${WEB_LINE} \e[0m"
 
-TIMEOUT_MESSAGE="If you don't connect to this session, it will be *SKIPPED* in ${timeout} seconds at ${kill_date}. To skip this step now, simply connect the ssh and exit."
+TIMEOUT_MESSAGE="如果您未连接SSH，则在${timeout}秒内自动跳过，要立即跳过此步骤，只需连接SSH并用(ctrl+d)退出"
 echo -e "$TIMEOUT_MESSAGE"
 
 if [[ -n "$TELEGRAM_BOT_TOKEN" ]]; then
@@ -133,7 +133,7 @@ if [[ -n "$TELEGRAM_BOT_TOKEN" ]]; then
   echo ""
 elif [[ -n "$PUSH_PLUS_TOKEN" ]]; then
   MSG="${SSH_LINE}\nWEB: ${WEB_LINE}"
-  curl -k --data token=${PUSH_PLUS_TOKEN} --data title=SSH_Message --data content=${SSH_LINE} http://www.pushplus.plus/send
+  curl -k --data token=${PUSH_PLUS_TOKEN} --data title=SSH_Message --data "content=${SSH_LINE} ${WEB_LINE}" "http://www.pushplus.plus/send"
   echo ""
 fi
 
