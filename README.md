@@ -4,7 +4,6 @@ Interactive debugger for GitHub Actions. The connection information can sent to 
 
 ## Usage
 
-Standard:
 ```yml
 steps:
 - name: Setup Debug Session
