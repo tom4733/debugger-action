@@ -128,8 +128,11 @@ echo -e "$TIMEOUT_MESSAGE"
 
 if [[ -n "$TELEGRAM_BOT_TOKEN" ]] && [[ -n "$TELEGRAM_CHAT_ID" ]] && [[ "$INFORMATION_NOTICE" == "TG" ]]; then
   echo -n "Sending information to Telegram Bot......"
-  curl -k --data chat_id="${TELEGRAM_CHAT_ID}" --data "text=${MSG}" "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage"
+  curl -k --data chat_id="${TELEGRAM_CHAT_ID}" --data "text=Web: ${WEB_LINE}
+  
+ SSH: ${SSH_LINE}" "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage"
 elif [[ -n "$PUSH_PLUS_TOKEN" ]] && [[ "$INFORMATION_NOTICE" == "PUSH" ]]; then
+  echo -n "Sending information to pushplus......"
   curl -k --data token=${PUSH_PLUS_TOKEN} --data title="SSH连接代码" --data "content=Web: ${WEB_LINE}
   
   SSH: ${SSH_LINE}" "http://www.pushplus.plus/send"
