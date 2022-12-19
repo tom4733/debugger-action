@@ -117,10 +117,11 @@ SSH_LINE="$(tmate -S "${TMATE_SOCK}" display -p '#{tmate_ssh}' |cut -d ' ' -f2)"
 WEB_LINE="$(tmate -S "${TMATE_SOCK}" display -p '#{tmate_web}')"
 
   MSG="SSH: ${SSH_LINE}\nWEB: ${WEB_LINE}"
-
+  echo
   echo -e " SSH:\e[32m ${SSH_LINE} \e[0m"
   echo -e " Web:\e[33m ${WEB_LINE} \e[0m"
-
+  echo
+  
 TIMEOUT_MESSAGE="如果您未连接SSH，则在${timeout}秒内自动跳过，要立即跳过此步骤，只需连接SSH并退出即可"
 echo -e "$TIMEOUT_MESSAGE"
 
@@ -168,9 +169,11 @@ while [ -S "${TMATE_SOCK}" ]; do
   if (( timecounter % display_int == 0 )); then
     echo "您可以使用SSH终端连接，或者使用网页直接连接"
       echo "终端连接IP为SSH:后面的代码，网页连接直接点击Web后面的链接，然后于[ctrl+c]开始和[ctrl+d]结束"
+      echo
       echo -e " SSH:\e[32m ${SSH_LINE} \e[0m"
       echo -e " Web:\e[33m ${WEB_LINE} \e[0m"
-	  
+      echo
+      
     [ "x${user_connected}" != "x1" ] && (
       echo -e "\n如果您还不连接SSH \e[31m将在\e[0m $(( timeout-timecounter )) 秒内自动跳过"
       echo "要立即跳过此步骤，只需连接SSH并正确退出即可"
