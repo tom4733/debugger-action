@@ -113,8 +113,7 @@ if [ ! -f "${TMATE_SERVER_LOG}" ]; then
   exit 1
 fi
 
-SSH_LIN="$(tmate -S "${TMATE_SOCK}" display -p '#{tmate_ssh}')"
-SSH_LINE="$(echo "${SSH_LIN}" |awk '{print $(2)}')"
+SSH_LINE="$(tmate -S "${TMATE_SOCK}" display -p '#{tmate_ssh}' |cut -d ' ' -f2)"
 WEB_LINE="$(tmate -S "${TMATE_SOCK}" display -p '#{tmate_web}')"
 
   MSG="SSH: ${SSH_LINE}\nWEB: ${WEB_LINE}"
@@ -168,7 +167,7 @@ while [ -S "${TMATE_SOCK}" ]; do
 
   if (( timecounter % display_int == 0 )); then
     echo "您可以使用SSH终端连接，或者使用网页直接连接"
-      echo "终端连接IP为SSH:后面的代码，网页连接直接点击Web后面的链接"
+      echo "终端连接IP为SSH:后面的代码，网页连接直接点击Web后面的链接，然后于[ctrl+c]开始和[ctrl+d]结束"
       echo -e " SSH:\e[32m ${SSH_LINE} \e[0m"
       echo -e " Web:\e[33m ${WEB_LINE} \e[0m"
 	  
