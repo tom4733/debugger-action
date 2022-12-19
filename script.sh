@@ -121,7 +121,7 @@ WEB_LINE="$(tmate -S "${TMATE_SOCK}" display -p '#{tmate_web}')"
   echo -e " SSH:\e[32m ${SSH_LINE} \e[0m"
   echo -e " Web:\e[33m ${WEB_LINE} \e[0m"
 
-TIMEOUT_MESSAGE="如果您未连接SSH，则在${timeout}秒内自动跳过，要立即跳过此步骤，只需连接SSH并正确退出即可"
+TIMEOUT_MESSAGE="如果您未连接SSH，则在${timeout}秒内自动跳过，要立即跳过此步骤，只需连接SSH并退出即可"
 echo -e "$TIMEOUT_MESSAGE"
 
 if [[ -n "$TELEGRAM_BOT_TOKEN" ]]; then
