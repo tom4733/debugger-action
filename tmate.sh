@@ -33,7 +33,16 @@ else
 fi
 echo -e "${INFO} Check the version of tmate ..."
 curl -H "Authorization: Bearer ${REPO_TOKEN}" https://api.github.com/repos/tmate-io/tmate/releases/latest -o tmateapi
-tmate_ver=$(grep -o '"tag_name": ".*"' tmateapi | head -n 1 | sed 's/"//g;s/v//g' | sed 's/tag_name: //g')
+if [ -f tmateapi ]; then
+  if [[ `grep -c "tag_name" tmateapi` -eq '1' ]]; then
+    tmate_ver=$(grep -o '"tag_name": ".*"' tmateapi | head -n 1 | sed 's/"//g;s/v//g' | sed 's/tag_name: //g')
+    echo "111111111111"
+  else
+    curl -fsSL https://github.com/281677160/common-main/releases/download/API/tmate.api -o tmateapi
+    tmate_ver=$(grep -o '"tag_name": ".*"' tmateapi | head -n 1 | sed 's/"//g;s/v//g' | sed 's/tag_name: //g')
+    echo "222222222222"
+  fi
+fi
 [ -z $tmate_ver ] && {
     echo -e "${ERROR} Unable to check the version, network failure or API error."
     curl -H "Authorization: Bearer ${REPO_TOKEN}" https://api.github.com/repos/tmate-io/tmate/releases/latest
