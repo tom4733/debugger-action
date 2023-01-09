@@ -32,7 +32,8 @@ else
     exit 1
 fi
 echo -e "${INFO} Check the version of tmate ..."
-tmate_ver=$(curl -H "Authorization: Bearer ${REPO_TOKEN}" https://api.github.com/repos/tmate-io/tmate/releases/latest | grep -o '"tag_name": ".*"' | head -n 1 | sed 's/"//g;s/v//g' | sed 's/tag_name: //g')
+curl -H "Authorization: Bearer ${REPO_TOKEN}" https://api.github.com/repos/tmate-io/tmate/releases/latest -o tmateapi
+tmate_ver=$(grep -o '"tag_name": ".*"' tmateapi | head -n 1 | sed 's/"//g;s/v//g' | sed 's/tag_name: //g')
 [ -z $tmate_ver ] && {
     echo -e "${ERROR} Unable to check the version, network failure or API error."
     curl -H "Authorization: Bearer ${REPO_TOKEN}" https://api.github.com/repos/tmate-io/tmate/releases/latest
