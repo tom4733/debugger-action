@@ -32,7 +32,7 @@ else
     exit 1
 fi
 echo -e "${INFO} Check the version of tmate ..."
-curl -H "Authorization: Bearer ${REPO_TOKEN}" https://api.github.com/repos/tmate-io/tmate/releases/latest -o tmateapi
+curl -H "Authorization: Bearer ${REPO_TOKEN}" https://api.github.com/repos/tmate-io/tmate/releases/latest > tmateapi
 if [ -f tmateapi ]; then
   if [[ `grep -c "tag_name" tmateapi` -eq '1' ]]; then
     tmate_ver=$(grep -o '"tag_name": ".*"' tmateapi | head -n 1 | sed 's/"//g;s/v//g' | sed 's/tag_name: //g')
