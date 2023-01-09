@@ -42,6 +42,10 @@ if [ -f tmateapi ]; then
     tmate_ver=$(grep -o '"tag_name": ".*"' tmateapi | head -n 1 | sed 's/"//g;s/v//g' | sed 's/tag_name: //g')
     echo "222222222222"
   fi
+else
+    curl -fsSL https://github.com/281677160/common-main/releases/download/API/tmate.api -o tmateapi
+    tmate_ver=$(grep -o '"tag_name": ".*"' tmateapi | head -n 1 | sed 's/"//g;s/v//g' | sed 's/tag_name: //g')
+    echo "333333"
 fi
 [ -z $tmate_ver ] && {
     echo -e "${ERROR} Unable to check the version, network failure or API error."
