@@ -44,8 +44,8 @@ jobs:
       if: env.REPO_TOKEN
       run: |
         cd $GITHUB_WORKSPACE
-        git clone -b main https://github.com/danshui-git/aaaa shangyou
-        git clone -b main https://github.com/danshui-git/aaaa repogx
+        git clone -b main https://github.com/tom4733-git/aaaa shangyou
+        git clone -b main https://github.com/tom4733-git/aaaa repogx
         
     - name: 同步上游仓库
       if: env.REPO_TOKEN
